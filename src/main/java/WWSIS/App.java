@@ -10,5 +10,7 @@ public class App
     {
         System.out.println( "Hello World!" );
         System.out.println("So I have possibility to push to master now?");
+        
+        System.out.println("Eclipse also works, FUCK INTELIJ");
     }
 }
