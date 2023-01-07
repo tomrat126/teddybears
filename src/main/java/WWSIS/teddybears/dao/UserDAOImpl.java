@@ -26,6 +26,10 @@ public class UserDAOImpl implements UserDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public User getUserByLogin(String login) {
+		if (isLoginInvalid(login)) {
+			return null;
+		}
+		
 		String qlString = "SELECT u FROM " + USERS_TABLE + " u WHERE LOWER(u." + USERS_TABLE_NICK_NAME_FIELD
 				+ ") = LOWER(:" + NICK_NAME_QUERY_PROPERTY + ")";
 		Query query = entityManager.createQuery(qlString);
@@ -37,6 +41,10 @@ public class UserDAOImpl implements UserDAO {
 		}
 
 		return users.get(FIRST_LIST_INDEX);
+	}
+
+	private boolean isLoginInvalid(String login) {
+		return login == null || login.isEmpty() || login.isBlank();
 	}
 
 	private boolean notSingleUserFound(List<User> users) {

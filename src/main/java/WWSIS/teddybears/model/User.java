@@ -65,4 +65,16 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		User anotherUser = (User)obj;
+		boolean result = true;
+		result &= this.id == anotherUser.getId();
+		result &= this.firstName.equals(anotherUser.getFirstName());
+		result &= this.lastName.equals(anotherUser.getLastName());
+		result &= this.nickName.equals(anotherUser.getNickName());
+		result &= this.password.equals(anotherUser.getPassword());
+		return result;
+	}
 }
